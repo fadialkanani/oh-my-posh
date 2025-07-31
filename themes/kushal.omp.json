@@ -135,6 +135,32 @@
           "template": " \uf252 {{ .FormattedMs }} ",
           "trailing_diamond": "\ue0b4",
           "type": "executiontime"
+        },
+        {
+          "type": "custom",
+          "style": "diamond",
+          "powerline_symbol": "\ue0b0",
+          "background": "#7B68EE",
+          "foreground": "#FFFFFF",
+          "template": " \uf2db CPU: {{ .Output }} ",
+          "properties": {
+            "command": "top -bn1 | grep 'Cpu(s)' | awk '{print 100 - $8 \"%\"}'",
+            "shell": "bash",
+            "refresh_interval": 5
+          }
+        },
+        {
+          "type": "custom",
+          "style": "diamond",
+          "powerline_symbol": "\ue0b0",
+          "background": "#4682B4",
+          "foreground": "#FFFFFF",
+          "template": " \uf538 RAM: {{ .Output }} ",
+          "properties": {
+            "command": "free -m | awk '/Mem:/ {printf(\"%dMB/%dMB\", $3, $2)}'",
+            "shell": "bash",
+            "refresh_interval": 5
+          }
         }
       ],
       "type": "prompt"
